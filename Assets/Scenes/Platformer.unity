@@ -126,7 +126,7 @@ GameObject:
   - component: {fileID: 779615781}
   m_Layer: 0
   m_Name: Ground
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -452,7 +452,7 @@ GameObject:
   - component: {fileID: 1974477557}
   m_Layer: 0
   m_Name: Character
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -490,11 +490,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0334b4cf6ac2cba4692f0871c5a6016e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 10
-  sr: {fileID: 1974477554}
-  anim: {fileID: 1974477556}
-  rig: {fileID: 1974477552}
-  jumpForce: 25
+  _speed: 5
+  _sr: {fileID: 1974477554}
+  _anim: {fileID: 1974477556}
+  _rig: {fileID: 1974477552}
+  _jumpForce: 5
 --- !u!212 &1974477554
 SpriteRenderer:
   m_ObjectHideFlags: 0

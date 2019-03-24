@@ -4,54 +4,54 @@ using UnityEngine;
 
 public class PlayerCharacter2D : MonoBehaviour
 {
-    public int speed;
-    public SpriteRenderer sr;
-    public Animator anim;
-    public Rigidbody2D rig;
-    public float jumpForce;
-    bool isGrounded;
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] private int _speed;
+    [SerializeField] private SpriteRenderer _sr;
+    [SerializeField] private Animator _anim;
+    [SerializeField] private Rigidbody2D _rig;
+    [SerializeField] private float _jumpForce;
+    
+    private bool _isGrounded;
+    private static readonly int IsWalking = Animator.StringToHash("isWalking");
+
+    private void Start()
     {
-        isGrounded = true;
+        _isGrounded = true;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        Movement();
-    }
-    void Movement()
+    private void Update()
     {
         if(Input.GetKey(KeyCode.Space))
         {
-            if(isGrounded)
+            if(_isGrounded)
             {
-                rig.AddForce(Vector2.up * jumpForce);
-                isGrounded = false;
+                _rig.AddForce(Vector2.up * _jumpForce, ForceMode2D.Impulse);
+                _isGrounded = false;
             }                    
         }
         if (Input.GetKey(KeyCode.D))
         {
-            anim.SetBool("isWalking" ,true);
-            transform.Translate(new Vector3(speed * Time.deltaTime, 0, 0));
-            sr.flipX = true;
+            _anim.SetBool(IsWalking ,true);
+            transform.Translate(new Vector3(_speed * Time.deltaTime, 0, 0));
+            _sr.flipX = true;
         }
-
         else if (Input.GetKey(KeyCode.A))
         {
-            anim.SetBool("isWalking",true);
-            transform.Translate(new Vector3(-speed * Time.deltaTime, 0, 0));
-            sr.flipX = false;
+            _anim.SetBool(IsWalking,true);
+            transform.Translate(new Vector3(-_speed * Time.deltaTime, 0, 0));
+            _sr.flipX = false;
         }
-        else anim.SetBool("isWalking",false);
+        else
+        {
+            _anim.SetBool(IsWalking,false);
+        }
 
     }
-    void OnCollisionEnter2D(Collision2D col)
+
+    private void OnCollisionEnter2D(Collision2D col)
     {
-        if(col.gameObject.tag == "Ground")
+        if(col.gameObject.CompareTag("Ground"))
         {
-            isGrounded = true;
+            _isGrounded = true;
         }
     }
 }
